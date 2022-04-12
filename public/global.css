@@ -1,0 +1,13 @@
+
+.homeBoxes{
+    border: 2px solid green;
+    padding: 3%;
+    width: 76%;
+    margin: 3% auto;
+    transition-duration: 0.1s;
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 5px;
+}
+.homeBoxes:hover{
+    transform: scale(1.01)
+}
