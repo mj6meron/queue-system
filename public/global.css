@@ -1,13 +1,127 @@
-
-.homeBoxes{
-    border: 2px solid green;
-    padding: 3%;
-    width: 76%;
-    margin: 3% auto;
-    transition-duration: 0.1s;
-    background-color: rgba(0,0,0,0.1);
-    border-radius: 5px;
+body {
+  text-align: center;
+  color: green;
+  font-weight: bold;
+  font-family: arial;
+  font-size: large;
 }
-.homeBoxes:hover{
-    transform: scale(1.01)
+input {
+  border: solid rgba(4, 110, 0, 0.4) 2px;
+  outline: none;
+  border-radius: 10px;
+  text-align: center;
+}
+button {
+  padding: 1%;
+  border: 3px solid rgb(96, 107, 0);
+  border-radius: 10px;
+  font-weight: bold;
+  color: white;
+  background-color: indigo;
+  box-shadow: 0 0 2px 2px indigo;
+}
+button:active {
+  color: indigo;
+  background-color: white;
+  box-shadow: 0 0 3px 3px rgb(255, 255, 255);
+  transition-duration: 0.13s;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/*
+  This is for index.html register and login
+  */
+.homeBoxes {
+  border: 2px solid green;
+  padding: 3%;
+  width: 76%;
+  margin: 3% auto;
+  transition-duration: 0.1s;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+}
+.homeBoxes:hover {
+  transform: scale(1.01);
+}
+
+#register {
+  padding: 1%;
+  display: flex;
+  flex-direction: column;
+}
+.inputBox {
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 1%;
+  margin: 0.2%;
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  transition-duration: 0.13s;
+}
+.inputBox:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+.prefix {
+  padding-right: 10px;
+  width: 50%;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+/*
+      This is for the dashboard
+*/
+#queueBoxxx {
+  border: 2px solid rgba(187, 187, 187, 0.61);
+  background-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  border-radius: 6px;
+  margin: 1% auto;
+  transition-duration: 0.13s;
+  color: white;
+}
+#queueBoxxx:hover {
+  transform: scale(1.01);
+}
+#nameUser,
+#emailUser {
+  width: 50%;
+  margin: 3px;
+  border: white 2px;
+}
+#container,
+#profileBox {
+  border: 5px rgba(9, 255, 0, 0.9) solid;
+  margin: 2%;
+  padding: 2%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  color: white;
+}
+/*
+    THIS IS FOR MY PROFILE PAGE
+*/
+
+#profileBox:hover {
+  transform: scale(1.01);
+}
+#name,
+#pn,
+#email,
+#telnumber {
+  color: lawngreen;
+  transition-duration: 0.01s;
+}
+#name:hover,
+#pn:hover,
+#email:hover,
+#telnumber:hover {
+  transform: scale(1.05);
+  color: rgb(151, 253, 151);
 }

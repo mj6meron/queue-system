@@ -13,6 +13,7 @@ router.post('/register', async (req, res) => {
         return res.status(400).json({error: error.details[0].message});   // The message is form the joi object in validation.js
     }
 
+
     // if existing user
     const emailExist = await User.findOne({ email: req.body.email });
 
@@ -21,13 +22,13 @@ router.post('/register', async (req, res) => {
     }
 
     // Hash Password
-    const salt = await bcrypt.genSalt(10);
-    const hashPn = await bcrypt.hash(req.body.pn, salt);
+    //const salt = await bcrypt.genSalt(10);
+    //const hashPn = await bcrypt.hash(req.body.pn, salt);
 
     // Create new User
     const user = new User({
         name: req.body.name,
-        pn: hashPn,
+        pn: req.body.pn,   // this could be hashedPn in the future
         email: req.body.email,
         telnumber: req.body.telnumber
     });
@@ -63,18 +64,12 @@ router.post('/login', async (req, res) => {
     // if existing email
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
-        return res.status(400).json({error: 'Email is not found'});
-    }
-
-    // Password correct?
-    const validPassword = await bcrypt.compare(req.body.password, user.password);
-    if(!validPassword) {
-        return res.status(400).json({error: 'Invalid password'});
+        return res.status(400).json({error: 'Email is not found! - You are not in the queue.'});
     }
 
     // Create and assign token
     const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
-    res.header('auth-token', token).json({token: token, redirect: 'batcave'}); // attached token to the header
+    res.header('auth-token', token).json({token: token, redirect: 'queue_dash'}); // attached token to the header
 
 });
 

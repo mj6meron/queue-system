@@ -9,20 +9,33 @@
 </head>
 <body>
     <div class="homeBoxes">
-        <h1>we hello there</h1>
-        <p>Hold your queue here before you go to the office</p>
         <form id="register">
-            Name: <input type="text" id="name">
-            Person-Number: <input type="id" id="pn">
-            Email: <input type="text" id="email">
-            telNumber: <input type="tel" id="telnumber">
-            <button id="enqueue" type="submit">Enqueue</button>
+            <div class="inputBoxTop">
+                    <h1>Hello there</h1>
+                    <p>Hold your queue here before you go into the office</p>
+            </div>
+            <div class="inputBox"> <span class="prefix"> Name:          </span><input type="text" id="name"></div>
+            <div class="inputBox"> <span class="prefix"> Person-Number: </span><input type="id" id="pn"></div>     
+            <div class="inputBox"> <span class="prefix"> Email:         </span><input type="email" id="email"></div>   
+            <div class="inputBox"> <span class="prefix"> telNumber:     </span><input type="tel" id="telnumber"></div> 
+            <div class="inputBoxButtom">
+                <p id="error"></p>                                                            
+                <button id="enqueue" type="submit">Enqueue</button>                                                            
+            </div>        
         </form>
-
     </div>
-    <div class="homeBoxes">
-        <P> Aready at the queue? Watch your queue here </P>
-        <button id="watch" type="submit">Watch Queue</button>
+    <div class="homeBoxes">                                                                                          
+        <form id="login"> 
+            <div class="inputBoxTop">
+                <P> Aready at the queue? Watch your queue here </P>                                                            
+            </div>                                                                                                                                                
+            <div class="inputBox"><span class="prefix">Email:</span><input type="email" id="emailLogin"></div>                                                      
+            <div class="inputBoxButtom">
+                <p id="error2"></p>      
+                <button id="watch" type="submit">Watch Queue</button>                              
+            </div>
+        </form>
     </div>
 </body>
+<script src="app.js"></script>
 </html>

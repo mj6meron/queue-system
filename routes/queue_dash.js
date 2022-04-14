@@ -1,8 +1,9 @@
-   const express = require('express');
+const express = require('express');
 const router = express.Router();
+const path = require('path');
 
 router.get('/', (req, res) => {
-    res.send('------  DashBoard of all users ---------- ')
+    res.sendFile(path.resolve('public/secureQueueDash.html'));
 });
 
 
