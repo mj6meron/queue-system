@@ -11,6 +11,7 @@ const registerTelnumber = document.querySelector('#telnumber');
 // Login inputs
 const emailLogin = document.querySelector('#emailLogin');
 
+
 // error messages
 const errorMsg = document.querySelector('#error');
 const error2 = document.querySelector('#error2');
