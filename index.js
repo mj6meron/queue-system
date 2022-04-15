@@ -9,6 +9,7 @@ const home = require('./routes/home')
 const openRoute = require('./routes/openRoute.js')
 const getDetails = require('./routes/getDetails')
 const queue_dash = require('./routes/queue_dash')
+var bodyParser = require('body-parser');
 
 const PORT = process.env.PORT || 1995
 
@@ -24,7 +25,10 @@ const app = express()
 
 // some middlewares
 app.use(express.static('public'))
-app.use(express.json())
+app.use(express.json())// configure the app to use bodyParser()
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 
 // Routes - REST APIs
@@ -35,7 +39,7 @@ app.use('/queue_dash', queue_dash)
 app.use('/getDetails', getDetails)
 app.use('/api/users', openRoute)
 app.use('/getDetails', getDetails)
-app.use('/', home)
+app.use('/home', home)
 
 app.get('/', (req, res)=>{
     res.send('welcome to the app server!')

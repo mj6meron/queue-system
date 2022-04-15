@@ -16,37 +16,29 @@ router.post('/register', async (req, res) => {
 
     // if existing user
     const emailExist = await User.findOne({ email: req.body.email });
-
-    if (emailExist) {
-        return res.status(400).json({error: 'Email exists buddy! You are aready at the queue'});
-    }
-
-    // Hash Password
-    //const salt = await bcrypt.genSalt(10);
-    //const hashPn = await bcrypt.hash(req.body.pn, salt);
-
-    // Create new User
-    const user = new User({
-        name: req.body.name,
-        pn: req.body.pn,   // this could be hashedPn in the future
-        email: req.body.email,
-        telnumber: req.body.telnumber
-    });
-
-
     try {
-        /*
-        *  Save the user
-        *  Redirect to batcave
-        * response object containing :
-                *  savedUser
-                * token
-        */
-        const savedUser = await user.save();
-        // then we create and assign token during registration to redirect to secure
-        const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
-        res.header('auth-token', token).json({token: token, redirect: 'queue_dash'});
-        signale.complete(savedUser)
+            if (emailExist && (emailExist.active==true)) {
+                console.log('found obj--> ' ,emailExist)
+                return res.status(400).json({error: 'Email exists buddy! You are aready at the queue'});
+            }
+            else if (emailExist && (emailExist.active==false)){
+                await Object.assign(emailExist, {"active": true, "datein": Date.now()})
+                await emailExist.save()
+                const token = jwt.sign({_id: emailExist._id}, process.env.TOKEN_SECRET);
+                res.header('auth-token', token).json({token: token, redirect: 'queue_dash'});
+            }
+            else{
+                const user = new User({
+                    name: req.body.name,
+                    pn: req.body.pn,   // this could be hashedPn in the future
+                    email: req.body.email,
+                    telnumber: req.body.telnumber
+                });
+                const savedUser = await user.save();
+                const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
+                res.header('auth-token', token).json({token: token, redirect: 'queue_dash'});
+                signale.complete(savedUser)
+            }
     } catch (err) {
         res.status(400).json(err);
     }
@@ -63,7 +55,7 @@ router.post('/login', async (req, res) => {
 
     // if existing email
     const user = await User.findOne({ email: req.body.email });
-    if (!user) {
+    if (!user || (user.active ==false)) {
         return res.status(400).json({error: 'Email is not found! - You are not in the queue.'});
     }
 

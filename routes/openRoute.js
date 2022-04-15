@@ -35,10 +35,7 @@ router.get('/:id', async (req, res) => {
 router.patch('/:id', async (req, res) => {
     try {
         const user = await User.findById(req.params.id)
-        console.log('here is the usssser -> ', user)
-        console.log('here is the req.body-> ', req.body)
         Object.assign(user, req.body)
-        console.log('here is the user after assigned --> ', user)
         await user.save()
         res.send({data : user})
     } catch (error) {

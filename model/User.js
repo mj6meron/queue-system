@@ -1,3 +1,4 @@
+const boolean = require('@hapi/joi/lib/types/boolean');
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
@@ -26,9 +27,17 @@ const userSchema = new mongoose.Schema({
         max: 1024,
         min: 6
     },
-    date: {
+    datein: {
         type: Date,
         default: Date.now
+    },
+    dateout: {
+        type: Date,
+        default: 0
+    },
+    active: {
+        type: Boolean,
+        default: true
     }
 });
 
