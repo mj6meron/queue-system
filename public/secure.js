@@ -31,9 +31,11 @@ if (localStorage.getItem('auth-token')){
         try {
             fetch('/deleteUser', {
                 method: 'PATCH', 
-                headers: {"Content-type": "application/json; charset=UTF-8"},
-                body : JSON.stringify({"id":userId})
+                headers: {"Content-type": "application/json; charset=UTF-8",
+                'auth-token': localStorage.getItem('auth-token')
+            }
             })
+            localStorage.clear();
         } catch(ex) {
             console.error('some error while sending the patch on leave button! -> ', ex);
         }

@@ -54,6 +54,16 @@ function backFunction(){
 // fired on leave button click 
 function leaveFunction (){
     console.log('we hit this bitch - we tryna leave')
-    localStorage.clear();
+    try {
+        fetch('/deleteUser', {
+            method: 'PATCH', 
+            headers: {"Content-type": "application/json; charset=UTF-8",
+            'auth-token': localStorage.getItem('auth-token')    
+        }
+        })
+        localStorage.clear();
+    } catch(ex) {
+        console.error('some error while sending the patch on leave button! -> ', ex);
+    }
     }
 

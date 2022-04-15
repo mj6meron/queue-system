@@ -16,29 +16,30 @@ router.post('/register', async (req, res) => {
 
     // if existing user
     const emailExist = await User.findOne({ email: req.body.email });
-    try {
+    try {   
+        //  FIRST COLLECT THE INPUT FIELDS
+            const user = new User({
+                name: req.body.name,
+                pn: req.body.pn,   // this could be hashedPn in the future
+                email: req.body.email,
+                telnumber: req.body.telnumber
+            });
+
+            // CHECK IF EMAIL - HAS BEEN OR ALREADY NOW
             if (emailExist && (emailExist.active==true)) {
                 console.log('found obj--> ' ,emailExist)
                 return res.status(400).json({error: 'Email exists buddy! You are aready at the queue'});
             }
             else if (emailExist && (emailExist.active==false)){
-                await Object.assign(emailExist, {"active": true, "datein": Date.now()})
-                await emailExist.save()
-                const token = jwt.sign({_id: emailExist._id}, process.env.TOKEN_SECRET);
-                res.header('auth-token', token).json({token: token, redirect: 'queue_dash'});
+                console.log('this user has been here before - INACTIVE')
+                await emailExist.remove()
             }
-            else{
-                const user = new User({
-                    name: req.body.name,
-                    pn: req.body.pn,   // this could be hashedPn in the future
-                    email: req.body.email,
-                    telnumber: req.body.telnumber
-                });
-                const savedUser = await user.save();
-                const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
-                res.header('auth-token', token).json({token: token, redirect: 'queue_dash'});
-                signale.complete(savedUser)
-            }
+            
+            const savedUser = await user.save();
+            const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
+            res.header('auth-token', token).json({token: token, redirect: 'queue_dash'});
+            signale.complete(savedUser)    
+           
     } catch (err) {
         res.status(400).json(err);
     }

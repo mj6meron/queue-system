@@ -37,10 +37,9 @@ a {
 .homeBoxes {
   border: 2px solid green;
   padding: 3%;
-  width: 76%;
+  width: 90%;
   margin: 3% auto;
   transition-duration: 0.1s;
-  background-color: rgba(0, 0, 0, 0.4);
   border-radius: 5px;
 }
 .homeBoxes:hover {

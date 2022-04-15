@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+    <link rel="stylesheet" href="global.css">
+</head>
+<body>
+
+    <form id="editbox" class="editbox">
+        <h2>Edit your details here</h2>
+        <p>You can edit only or all you want to change!</p>
+        <div class="inputBox"> <span class="prefix"> Name:          </span><input type="text" id="nameEdit"></div>
+            <div class="inputBox"> <span class="prefix"> Person-Number: </span><input type="id" id="pnEdit"></div>     
+            <div class="inputBox"> <span class="prefix"> Email:         </span><input type="email" id="emailEdit"></div>   
+            <div class="inputBox"> <span class="prefix"> telNumber:     </span><input type="tel" id="telnumberEdit"></div> 
+            <div class="inputBoxButtom">
+                <p id="errorP"></p>
+                <button id="savechanges" type="submit">Save Changes</button>
+            </div>
+    </form>
+</body>
+<script src="./edit.js"></script>
+</html>
