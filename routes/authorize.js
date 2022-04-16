@@ -35,6 +35,7 @@ router.post('/register', async (req, res) => {
                 await emailExist.remove()
             }
             
+            
             const savedUser = await user.save();
             const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
             res.header('auth-token', token).json({token: token, redirect: 'queue_dash'});
